@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #qr_code_container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .remove-btn {
+            background-color: #dc3545;
+        }
+
+        .remove-btn:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <form action="/generate_qr" method="post">
+            <label for="qr_data">Enter data:</label>
+            <input type="text" id="qr_data" name="qr_data" required>
+            <button type="submit">Generate QR Code</button>
+        </form>
+        {% if qr_code %}
+        <div id="qr_code_container">
+            <img src="{{ qr_code }}" alt="QR Code">
+            <form action="/remove_qr" method="post">
+                <button class="remove-btn" type="submit">Remove QR Code</button>
+            </form>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
